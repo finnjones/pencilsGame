@@ -1,0 +1,93 @@
+<!--set type to html-->
+<!DOCTYPE html>
+<!--open html code-->
+<html>
+<head>
+    <link rel="shortcut icon" type="image/png" href="Images/favicon.png" />
+    <link type="text/css" rel="stylesheet" href="css/stylesheet.css" />
+    <!--Website Tab Heading-->
+    <title>
+        Home Page
+    </title>
+</head>
+
+<body>
+
+    <!-- fade in -->
+    <div id="fadein2">
+
+        <div2>
+            <center>
+
+
+                <!--tile of website with blue box-->
+                <h1 style="background-color:DodgerBlue;">Pencils</h1>
+            
+            </center>
+            <!-- dropdown menu -->
+                <div class="dropdown">
+                        <button class="dropbtn">Menu</button>
+                        <div class="dropdown-content">
+                            <a id="CHANGECOLOUR" href="Index.html">Intro</a>
+                            <a id="CHANGECOLOUR" href="Home Page.html">Home Page</a>
+                            <a id="CHANGECOLOUR" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Video</a>
+                            
+                        </div>
+                    </div>
+
+            <center>
+              <!-- game rules description ect -->
+                <h2><b>Game Description</b></h2>
+
+                <p>This game is a basic trading game the aim of the game is to get 100 fountain pens with 0 debt</p>
+
+                <h2><b>Rules</b></h2>
+
+                <p>There is only one rule <b>NO INSPECT ELEMENT</b></p>
+
+                <!-- start game button -->
+                <h1><a id="CHANGECOLOUR" href="Game Page.html">Start Game</a></h1>            
+                <!-- music toggle button -->
+                <a class='fade-in'onClick="togglePlay()"><button id="button2">Music Pause/Play</button></a>
+                <!-- music place and auto play command -->
+                
+                <audio autoplay id="myAudio" src="Music/Indiana Jones Theme Song (8 Bit Remix Cover Version) - 8 Bit Universe.mp3" type="audio.mpeg" preload="auto" loop>
+                </audio>
+                <!-- toggle pause and play -->
+                <script>
+                  var myAudio = document.getElementById("myAudio");
+                  var isPlaying = false;
+                
+                  function togglePlay() {
+                    if (isPlaying) {
+                      myAudio.pause()
+                    } else {
+                      myAudio.play();
+                    }
+                  };
+                  myAudio.onplaying = function() {
+                    isPlaying = true;
+                  };
+                  myAudio.onpause = function() {
+                    isPlaying = false;
+                  };
+                  </script>
+                <!-- video controls and source -->
+                <h2 style= "background-color: DodgerBlue;">How To Play</h2>
+                <video controls muted width="1280" height="720">
+                    <source src="Untitled.mp4" type="video/mp4">
+                </video>
+                <h2 style= "background-color: DodgerBlue;">Meme section</h2>
+                <video controls>
+                    <source src="Big%20Chungus%20eats%20the%20universe.mp4" type="video/mp4">
+                </video>
+                <video controls>
+                    <source src="DO%20YOU%20KNOW%20THE%20WAY.mp4" type="video/mp4">
+                </video>
+            </center>
+
+        </div2>
+    </div>
+</body>
+
+</html>

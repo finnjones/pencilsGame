@@ -1,0 +1,165 @@
+<!--set type to html-->
+<!DOCTYPE html>
+<!--open html code-->
+<html>
+
+<head>
+    <!-- Icon for tab -->
+    <link rel="shortcut icon" type="image/png" href="Images/favicon.png" />
+    <!-- Link css -->
+    <link type="text/css" rel="stylesheet" href="css/styleCas.css" />
+    <link type="text/html" rel="Game Page" href="Game Page.html" />
+    <!--Website Tab Heading-->
+    <title>
+        Home Page
+    </title>
+
+
+
+    
+ 
+              <!-- music on and off button -->
+              <a id="musicButton" class='fade-in'onClick="togglePlay()"><button id="button2">Music On/Off</button></a>
+
+              <!-- switches back to trading game -->
+              <button id="Trading Game" onclick="toCasino(), location.href='Game Page.html'">Trading Game</button>
+                
+              <audio autoplay id="myAudio" src="Music/Most%20awesome%208-bit%20song%20ever.mp3" type="audio.mpeg" preload="auto">
+              </audio>
+              <center>
+                <!-- title -->
+              <h1>Gambling<h1>
+
+                <!-- text -->
+            <h2>Role the Dice and see what the future holds for you<h2>
+                    
+
+                             <!-- code was adapted from source Lachlan Johnstan this code uploads the vars dollars and loan to local storage and then retreves them when called on -->
+                            <SCRIPT LANGUAGE="javascript">
+                            function toCasino(){
+                                var Dollars = document.getElementById("Dollars");
+                                var Dollars = parseInt(Dollars.innerHTML);
+                                localStorage.setItem('DollarsAmount', Dollars);
+                                var storedDollars = localStorage.getItem('DollarsAmount')
+                                }
+
+                                function synchroniseDollars(){
+                                var DollarsAmo = localStorage.getItem('DollarsAmount')
+                                DollarsAmo = parseInt(DollarsAmo);
+                                Dollars.innerHTML = DollarsAmo;
+
+                                var loanAmo = localStorage.getItem('loanAmount')
+                                loanAmo = parseInt(loanAmo);
+                                loan.innerHTML = loanAmo;
+
+                                
+                                
+                                }
+
+
+                                  // create var
+                            var altDollars = 0
+
+                            // gets random number between 1 and 6
+                            function random_dice() {
+                            document.getElementById("demo").innerHTML = Math.floor(Math.random() * 6)+ 1;      
+                            
+
+                              //  adds or subtracts Dollars depending on the dice number 
+
+                                if (demo.innerHTML == 1){
+                                  var altDollars = Dollars.innerHTML - 30;
+                                  Dollars.innerHTML = altDollars;
+                                  alert("You lose 30 dollars");
+                                }
+
+                                if (demo.innerHTML == 2){
+                                  var altDollars = Dollars.innerHTML - 20;
+                                  Dollars.innerHTML = altDollars;
+                                  alert("You lose 20 dollars");
+                               
+                                }
+                                if (demo.innerHTML == 3){
+                                    var altDollars = Dollars.innerHTML - 10;
+                                    Dollars.innerHTML = altDollars;
+                                    alert("You lose 10 dollars");
+                               
+                                }
+                                if (demo.innerHTML == 4){
+                                    var altDollars = +Dollars.innerHTML + +10;
+                                    Dollars.innerHTML = altDollars;
+                                    alert("You win 10 dollars");
+                               
+                                }
+                                if (demo.innerHTML == 5){
+                                    var altDollars = +Dollars.innerHTML + +20;
+                                    Dollars.innerHTML = altDollars;
+                                    alert("You win 20 dollars");
+                               
+                                }
+                                if (demo.innerHTML == 6){
+                                    var altDollars = +Dollars.innerHTML + +30;
+                                    Dollars.innerHTML = altDollars;
+                                    alert("You win 30 dollars");
+                               
+                                }
+                            
+                            }
+
+                            
+                            
+
+            
+                            </SCRIPT> 
+
+                            <!-- prints dollars -->
+                            <p>Dollars: <span id="Dollars"></span></p>
+                            <!-- number on dice -->
+                            <p>Number On Dice: <span id="demo"></span></p>
+
+                            <!-- roles dice -->
+                <div id="DiceRole"><button id="DiceRole" onclick="random_dice()">Role Dice</button></div>
+                          </center>
+                        
+
+                              <!-- music pause and play -->
+                                    <script>
+                                      var myAudio = document.getElementById("myAudio");
+                                      var isPlaying = false;
+                                    
+                                      function togglePlay() {
+                                        if (isPlaying) {
+                                          myAudio.pause()
+                                        } else {
+                                          myAudio.play();
+                                        }
+                                      };
+                                      myAudio.onplaying = function() {
+                                        isPlaying = true;
+                                      };
+                                      myAudio.onpause = function() {
+                                        isPlaying = false;
+                                      };
+                                      </script>
+                
+                                    
+                          
+                        </div>
+                    </div>
+                </div>
+                  </body>
+                </html>
+            </head>
+            <body>
+            </body>
+            <script>
+                synchroniseDollars();
+            </script>
+</html>
+
+
+
+    
+
+
+

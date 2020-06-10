@@ -1,0 +1,326 @@
+<html>
+    <head>
+        <!-- link image -->
+<link rel="shortcut icon" type="image/png" href="Images/favicon.png" />
+
+<!-- link css -->
+<link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
+    <body>
+
+<!-- this is a margin for the website -->
+    <div class="goodMargin">
+
+        <!-- back button -->
+        <h1><a id="CHANGECOLOUR" href="Home Page.html">Go Back</a></h1>
+        <!-- takes you to casino page -->
+        <div id="1"></div><button id="toCasinoButton" onclick="toCasino(), location.href='Game Page 2.html'">Casino</button></div>
+        <!-- save game -->
+        <div id="2"><button id="save" onclick="toCasino(), alert('Game Saved')">Save Game</button></div>
+        <div id="3"><button id="reset" onclick="resetGame(), alert('reset')">Reset Dollars</button></div>
+    </div>
+
+    <!-- Dropdown menu heavily adapted from w3schools -->
+    <div class="dropdown">
+        <button  class="dropbtn">Menu</button>
+        <div class="dropdown-content">
+            <a id="CHANGECOLOUR" href="Intro.html">Intro</a>
+            <a id="CHANGECOLOUR" href="Home Page.html">Home Page</a>
+            <a id="CHANGECOLOUR" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Video</a>
+        </div>
+    </div>
+    
+    <!-- set tab title -->
+        <title>Pencils</title>
+
+        <!-- margin for website -->
+        <div id="betterMargin">
+        
+            <!-- open script tag -->
+            <script>
+
+
+// this fuction adds to pen count and subtracts from dollars count when called on depending on if pen pencil or fountain pen
+function buy(item) {
+    var Dollars = document.getElementById("Dollars");
+    var itemCount = document.getElementById(item);
+    var itemPrice = document.getElementById(item + "-cost");
+
+    if (parseInt(Dollars.innerHTML) - parseInt(itemPrice.innerHTML) >= 0) {
+        itemCount.innerHTML = parseInt(itemCount.innerHTML) + 1;
+        Dollars.innerHTML = parseInt(Dollars.innerHTML) - parseInt(itemPrice.innerHTML);
+    }
+    
+}
+
+
+// this fuction subtracts from pen count and adds to dollars count when called on depending on if pen pencil or fountain pen
+function sell(item) {
+    var Dollars = document.getElementById("Dollars");
+    var itemCount = document.getElementById(item);
+    var itemPrice = document.getElementById(item + "-cost");
+
+    if (parseInt(itemCount.innerHTML) > 0) {
+        itemCount.innerHTML = parseInt(itemCount.innerHTML) - 1;
+        Dollars.innerHTML = parseInt(Dollars.innerHTML) + parseInt(itemPrice.innerHTML);
+    }
+}
+
+//This function sells all stock and gives you money for it depending on if pen pencil or fountain pen
+
+function sellAll(item) {
+    var Dollars = document.getElementById("Dollars");
+    var itemCount = document.getElementById(item);
+    var itemPrice = document.getElementById(item + "-cost");
+
+    if (parseInt(itemCount.innerHTML) > 0) {
+        Dollars.innerHTML = parseInt(itemCount.innerHTML) * parseInt(itemPrice.innerHTML) + parseInt(Dollars.innerHTML);
+        itemCount.innerHTML = parseInt(itemCount.innerHTML) - parseInt(itemCount.innerHTML);
+        
+    }
+}
+
+// This function changes prices every time new day is pressed randomly
+
+function changePrices() {
+    var pencilPrice = document.getElementById("pencil-cost");
+    var rand = Math.floor(Math.random() * 5);
+    rand = rand - 2;
+
+
+    if (parseInt(pencilPrice.innerHTML) + rand >= 8 &&
+        parseInt(pencilPrice.innerHTML) + rand <= 15) {
+        pencilPrice.innerHTML = parseInt(pencilPrice.innerHTML) + rand;
+    }
+    var penPrice = document.getElementById("pen-cost");
+    var rand = Math.floor(Math.random() * 5);
+    rand = rand - 2;
+
+    if (parseInt(penPrice.innerHTML) + rand >= 15 &&
+        parseInt(penPrice.innerHTML) + rand <= 30) {
+
+        penPrice.innerHTML = parseInt(penPrice.innerHTML) + rand;
+    }
+    var fountainPrice = document.getElementById("fountain-cost");
+    var rand = Math.floor(Math.random() * 5);
+    rand = rand - 2;
+
+    if (parseInt(fountainPrice.innerHTML) + rand >= 40 &&
+        parseInt(fountainPrice.innerHTML) + rand <= 60) {
+
+        fountainPrice.innerHTML = parseInt(fountainPrice.innerHTML) + rand;
+    }
+
+
+    // adding intrest to bank balance
+    addInterest();
+
+
+
+}
+
+// This function adds intrest of 1.0012 every time new day is pressed
+function addInterest() {
+    var loan = document.getElementById("loan");
+    var interest = 1.0012;
+    var debt = parseInt(loan.innerHTML);
+    debt = Math.floor(debt * interest);
+    loan.innerHTML = debt;
+
+}
+
+
+
+
+
+
+
+// This function takes money depending on what is input into box
+
+function take() {
+    var value = document.getElementById('readme').value;
+    var Dollars = document.getElementById("Dollars");
+    var loan = document.getElementById("loan");
+    if (value > 0) {
+        if (value < 5001) {
+            Dollars.innerHTML = parseInt(Dollars.innerHTML) + parseInt(value);
+            loan.innerHTML = parseInt(loan.innerHTML) - parseInt(value);
+        } else {
+            alert("Error please enter a number from 1 - 5000")
+        }
+
+    } else {
+        alert("Error please enter a number from 1 - 5000")
+    }
+
+
+    
+}
+function resetGame(){
+          //getting the elements
+          var Dollars = document.getElementById("Dollars");
+          var loan = document.getElementById("loan");
+
+
+          Dollars.innerHTML = 100;
+          loan.innerHTML = 0;
+          //setting the local storage amounts to 0
+          localStorage.setItem('DollarsAmount', 100);
+          localStorage.setItem('loanAmount', 0);
+
+          //reloading the page
+          location.reload();
+        }
+
+// This function pays back money depending on what is input into the box
+
+function pay() {
+    var value = document.getElementById('readme').value;
+    var Dollars = document.getElementById("Dollars");
+    var loan = document.getElementById("loan");
+        if (Dollars.innerHTML - value  > -1){
+            if (value >= 0) {
+        Dollars.innerHTML = parseInt(Dollars.innerHTML) - parseInt(value);
+        loan.innerHTML = parseInt(loan.innerHTML) + parseInt(value);
+
+
+        } 
+        else {
+            alert("Error please enter a number from 1 - 5000")
+        }
+        }
+        
+
+    
+
+
+}
+        
+        // code was adapted from source Lachlan Johnstan this code uploads the vars dollars and loan to local storage and then retreves them when called on
+        function toCasino(){
+        sellAll('pencil'), sellAll('pen'), sellAll('fountain')
+          var Dollars = document.getElementById("Dollars");
+          var Dollars = parseInt(Dollars.innerHTML);
+          var loan = document.getElementById("loan");
+          var loan = parseInt(loan.innerHTML);
+
+
+
+          localStorage.setItem('DollarsAmount', Dollars);
+          var storedDollars = localStorage.getItem('DollarsAmount')
+          localStorage.setItem('loanAmount', loan);
+          var storedloan = localStorage.getItem('loanAmount')
+        }
+
+        function synchroniseDollars(){
+            var DollarsAmo = localStorage.getItem('DollarsAmount')
+            DollarsAmo = parseInt(DollarsAmo);
+            Dollars.innerHTML = DollarsAmo;
+
+            var loanAmo = localStorage.getItem('loanAmount')
+            loanAmo = parseInt(loanAmo);
+            loan.innerHTML = loanAmo;
+        }
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+        <center>
+                <!-- title -->
+            <h1>Pencils</h1>
+            <p>
+                <!-- dollars -->
+                Dollars: <span id="Dollars">100</span>
+                <!-- new day button -->
+               <button onclick="changePrices()">New Day</button></a>
+            </p>
+            <!-- Images for pen pencil fountain pen -->
+            <div id="images">
+            <img hspace="20" src="Images/download1.png">
+            <img hspace="20"  src="Images/download2.png">
+            <img hspace="20"  src="Images/download3.png">
+            </div>
+
+            <!-- buttons for buying selling and vars holding item cost and item count -->
+            <div id="itemblock">
+                <div id="itemblockname">Pencil</div>
+                <div id="itemblockqty">Amount: <span id="pencil">0</span></div>
+                <div id="itemblockqty">Cost: <span id="pencil-cost">10</span></div>
+                <button id="buyAndSell" onclick="buy('pencil')">Buy</button>
+                <button id="new" onclick="sell('pencil')">Sell</button>
+            </div>
+            <div id="itemblock">
+                <div id="itemblockname">Pen</div>
+                <div id="itemblockqty">Amount: <span id="pen">0</span></div>
+                <div id="itemblockqty">Cost: <span id="pen-cost">20</span></div>
+                <button id="buyAndSell" onclick="buy('pen')">Buy</button>
+                <button id="new" onclick="sell('pen')">Sell</button>
+            </div>
+            <div id="itemblock">
+                <div id="itemblockname">Fountain Pen</div>
+                <div id="itemblockqty">Amount: <span id="fountain">0</span></div>
+                <div id="itemblockqty">Cost: <span id="fountain-cost">50</span></div>
+                <button id="buyAndSell" onclick="buy('fountain')">Buy</button>
+                <button id="new" onclick="sell('fountain')">Sell</button>
+
+            </div>
+
+            <!-- the bank title -->
+            <h3>The Bank</h3>
+
+            <!-- inputs for withdraw and pay back -->
+            <input id="readme">
+            <input type="submit" onClick="pay()" value="Pay Back">
+            <input type="submit" onClick="take()" value="Withdraw">
+
+            <p>Your Bank Account: <span id="loan">0</span></p>
+
+
+            <!-- music toggle button -->
+            <div id="separation">
+                <a id="ameme" class='fade-in' onClick="togglePlay()"><button id="button2">Music On/Off</button></a>
+            </div>
+
+            <!-- music place and auto play command -->
+            <audio autoplay id="myAudio" src="Music/Most%20awesome%208-bit%20song%20ever.mp3" type="audio.mpeg" preload="auto" loop>
+            </audio>
+            <!-- toggle pause and play -->
+            <script>
+                var myAudio = document.getElementById("myAudio");
+                var isPlaying = false;
+
+                function togglePlay() {
+                    if (isPlaying) {
+                        myAudio.pause()
+                    } else {
+                        myAudio.play();
+                    }
+                };
+                myAudio.onplaying = function() {
+                    isPlaying = true;
+                };
+                myAudio.onpause = function() {
+                    isPlaying = false;
+                };
+            </script>
+            </div>
+            </div>
+            </div>
+            
+        </center>
+    </body>
+    <script>
+        synchroniseDollars();
+    </script>
+    </html>
+
+
